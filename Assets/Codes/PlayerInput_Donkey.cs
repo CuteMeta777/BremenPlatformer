@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput_Donkey : MonoBehaviour
 {
     public float move_x { get; private set; }
     public float move_z { get; private set; }

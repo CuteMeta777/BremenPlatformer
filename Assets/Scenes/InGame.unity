@@ -589,7 +589,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5895969383955218492, guid: 18d1439cedfc0fb4b959c62db886a202, type: 3}
       propertyPath: m_Name
-      value: Player (Horse)
+      value: Player (Donkey)
       objectReference: {fileID: 0}
     - target: {fileID: 6528354989613161094, guid: 18d1439cedfc0fb4b959c62db886a202, type: 3}
       propertyPath: m_LocalPosition.x

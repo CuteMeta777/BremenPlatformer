@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private float speed;
-    private float pitch;
+    private float mouse_sensitivity;
 
-    [SerializeField] private Transform chicken;
+    [SerializeField] private Transform player_transform;
+
+    private float xRotation = 0f;
 
     private void Awake()
     {
@@ -14,36 +15,26 @@ public class CameraController : MonoBehaviour
 
     private void InitFields()
     {
-        speed = 100f;
-        pitch = 0f;
+        mouse_sensitivity = 300f;
     }
 
     private void Start()
     {
-        // 마우스 커서 숨기기 & 고정하기
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update()
+    void Update()
     {
-        float dx = 0;
-        float dy = 0;
+        float mouseX = Input.GetAxis("Mouse X") * mouse_sensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouse_sensitivity * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.UpArrow))    { dx -= 1f; }
-        if (Input.GetKey(KeyCode.DownArrow))  { dx += 1f; }
-        if (Input.GetKey(KeyCode.RightArrow)) { dy += 1f; }
-        if (Input.GetKey(KeyCode.LeftArrow))  { dy -= 1f; }
-
-        dx *= (speed * Time.deltaTime);
-        dy *= (speed * Time.deltaTime);
-
-        pitch += dx;
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         // Pitch
-        transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         // Yaw
-        chicken.Rotate(Vector3.up * dy);
+        player_transform.Rotate(Vector3.up * mouseX);
     }
 }
